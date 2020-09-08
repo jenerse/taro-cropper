@@ -1,10 +1,10 @@
 {
 	"name": "taro-cropper",
-	"version": "1.1.0",
+	"version": "2.0.0",
 	"private": false,
 	"description": "Taro框架下的图片裁剪组件封装，开箱即用",
-	"main": "dist/index.js",
-	"main:h5": "dist/index.js",
+	"main": "src/index.js",
+	"main:h5": "src/index.js",
 	"templateInfo": {
 		"name": "default",
 		"typescript": true,

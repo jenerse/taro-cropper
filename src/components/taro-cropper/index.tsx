@@ -1,11 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, CSSProperties } from 'react';
 import Taro, {CanvasContext, getImageInfo, getSystemInfoSync} from '@tarojs/taro';
-import {Canvas, CoverView, View} from '@tarojs/components';
-import './index.scss';
 // @ts-ignore
 import {CanvasTouch, CanvasTouchEvent} from "@tarojs/components/types/common";
-import {CSSProperties} from "react";
+import {Canvas, CoverView, View} from '@tarojs/components';
+
+// @ts-ignore
 import {easySetFillStyle, easySetLineWidth, easySetStrokeStyle} from "./canvas-util";
+
+// import './index.scss';
 
 
 interface TaroCropperComponentProps {
@@ -26,7 +28,7 @@ interface TaroCropperComponentProps {
   hideCancelText: boolean,          // 隐藏取消按钮（默认为true）
   finishText: string,               // 完成按钮文字，默认为 '完成'
   cancelText: string,               // 取消按钮文字，默认为 '取消'
-  fileType: 'jpg' | 'png' | string, // 裁剪后导出的图片的格式，只支持 'jpg' 或 'png'。默认为 'jpg'
+  fileType: 'jpg' | 'png', // 裁剪后导出的图片的格式，只支持 'jpg' 或 'png'。默认为 'jpg'
   quality: number,                  // 导出图片的质量，取值为 0 ~ 1，默认为1
 }
 
@@ -62,7 +64,7 @@ class TaroCropperComponent extends PureComponent<TaroCropperComponentProps, Taro
     },
   };
 
-  systemInfo: getSystemInfoSync.Return;
+  systemInfo: getSystemInfoSync.Result;
 
   constructor(props) {
     super(props);
@@ -88,7 +90,7 @@ class TaroCropperComponent extends PureComponent<TaroCropperComponentProps, Taro
   height: number = 0;
   cropperWidth: number = 0;
   cropperHeight: number = 0;
-  imageInfo: getImageInfo.Promised;
+  imageInfo: getImageInfo.SuccessCallbackResult;
   realImageWidth: number = 0;
   realImageHeight: number = 0;
   scaleImageWidth: number = 0;
@@ -116,7 +118,7 @@ class TaroCropperComponent extends PureComponent<TaroCropperComponentProps, Taro
     return Taro.getImageInfo({
       src: src
     })
-      .then((res: getImageInfo.Promised) => {
+      .then((res: getImageInfo.SuccessCallbackResult) => {
         this.imageInfo = res;
         const imageWidth = res.width;
         const imageHeight = res.height;
@@ -443,7 +445,7 @@ class TaroCropperComponent extends PureComponent<TaroCropperComponentProps, Taro
       quality
     } = this.props;
     return new Promise((resolve, reject) => {
-      const scope = process.env.TARO_ENV === 'h5' ? this : this.$scope;
+      const scope = process.env.TARO_ENV === 'h5' ? this : this;
       Taro.canvasToTempFilePath({
         canvasId: cropperCutCanvasId,
         x: 0,
@@ -457,11 +459,11 @@ class TaroCropperComponent extends PureComponent<TaroCropperComponentProps, Taro
         success: res => {
           switch (process.env.TARO_ENV) {
             case 'alipay':
-              resolve({
-                errMsg: res.errMsg,
-                filePath: res.apFilePath
-              });
-              break;
+              // resolve({
+              //   errMsg: res.errMsg,
+              //   filePath: res.apFilePath
+              // });
+              // break;
             case 'weapp':
             case 'qq':
             case 'h5':
@@ -471,9 +473,8 @@ class TaroCropperComponent extends PureComponent<TaroCropperComponentProps, Taro
                 filePath: res.tempFilePath
               });
               break;
-
           }
-          resolve(res);
+          // resolve(res);
         },
         fail: err => {
           reject(err);
@@ -491,7 +492,7 @@ class TaroCropperComponent extends PureComponent<TaroCropperComponentProps, Taro
       height,
       cropperCanvasId,
       fullScreen,
-      fullScreenCss,
+      // fullScreenCss,
       themeColor,
       hideFinishText,
       cropperWidth,
@@ -507,11 +508,12 @@ class TaroCropperComponent extends PureComponent<TaroCropperComponentProps, Taro
     const _height = fullScreen ? this.systemInfo.windowHeight : this._getRealPx(height);
     const _cropperWidth = this._getRealPx(cropperWidth);
     const _cropperHeight = this._getRealPx(cropperHeight);
-    const isFullScreenCss = fullScreen && fullScreenCss
+    // const isFullScreenCss = fullScreen && fullScreenCss
+    const isFullScreenCss = fullScreen
 
-    const croperStyle = isFullScreenCss ? {} : {
+    const croperStyle: CSSProperties = isFullScreenCss ? {} : {
       position: 'relative'
-    }
+    };
 
     const canvasStyle: CSSProperties = {
       background: 'rgba(0, 0, 0, 0.8)',

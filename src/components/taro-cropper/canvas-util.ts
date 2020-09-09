@@ -36,7 +36,7 @@ function isWeapp() {
 //////////////////////////////////////////////////////////////////////////////////
 
 
-function _easyCanvasContextBase(systemInfo: Taro.getSystemInfoSync.Return, lowCallback: () => void, highCallback: () => void, targetVersion: string = "1.9.90") {
+function _easyCanvasContextBase(systemInfo: Taro.getSystemInfoSync.Result, lowCallback: () => void, highCallback: () => void, targetVersion: string = "1.9.90") {
   if (isWeapp() && compareVersion(systemInfo.SDKVersion, targetVersion) >= 0) {
     highCallback()
   } else {
@@ -50,8 +50,9 @@ function _easyCanvasContextBase(systemInfo: Taro.getSystemInfoSync.Return, lowCa
  * @param canvasContext
  * @param color
  */
-function easySetStrokeStyle(systemInfo: Taro.getSystemInfoSync.Return, canvasContext: CanvasContext, color: string | Color) {
+function easySetStrokeStyle(systemInfo: Taro.getSystemInfoSync.Result, canvasContext: CanvasContext, color: string | Color) {
   _easyCanvasContextBase(systemInfo, () => {
+    // @ts-ignore
     canvasContext.setStrokeStyle(color);
     console.log("???");
   }, () => {
@@ -61,7 +62,7 @@ function easySetStrokeStyle(systemInfo: Taro.getSystemInfoSync.Return, canvasCon
   });
 }
 
-function easySetLineWidth(systemInfo: Taro.getSystemInfoSync.Return, canvasContext: CanvasContext, lineWidth: number) {
+function easySetLineWidth(systemInfo: Taro.getSystemInfoSync.Result, canvasContext: CanvasContext, lineWidth: number) {
   _easyCanvasContextBase(systemInfo, () => {
     canvasContext.setLineWidth(lineWidth)
   }, () => {
@@ -69,9 +70,10 @@ function easySetLineWidth(systemInfo: Taro.getSystemInfoSync.Return, canvasConte
   })
 }
 
-function easySetFillStyle(systemInfo: Taro.getSystemInfoSync.Return, canvasContext: CanvasContext, color: string | Color) {
+function easySetFillStyle(systemInfo: Taro.getSystemInfoSync.Result, canvasContext: CanvasContext, color: string | Color) {
   _easyCanvasContextBase(systemInfo, () => {
-    canvasContext.setFillStyle(color)
+    // @ts-ignore
+    canvasContext.setFillStyle(color);
   }, () => {
     if (typeof color === "string") {
       canvasContext.fillStyle = color

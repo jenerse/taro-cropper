@@ -3,8 +3,12 @@
 [![](https://img.shields.io/npm/dt/taro-cropper.svg?style=flat-square)](https://www.npmjs.com/package/taro-cropper)
 
 > # taro-cropper
+
+> 兼容Taro v3.x
 >
-> 项目地址: [https://github.com/SunnyQjm/taro-cropper](https://github.com/SunnyQjm/taro-cropper)
+> 项目地址: [https://github.com/jenerse/taro3-cropper](https://github.com/jenerse/taro3-cropper)
+
+> forked from: [https://github.com/SunnyQjm/taro-cropper](https://github.com/SunnyQjm/taro-cropper)
 
 TaroCropper 是Taro小程序框架下使用的图片裁剪，基于canvasAPI进行实现，支持滑动和缩放，目前测试在微信小程序端, QQ小程序端, 支付宝小程序端, 字节跳动小程序端, 百度小程序端和H5端可以正常使用。
 
@@ -19,9 +23,7 @@ TaroCropper 是Taro小程序框架下使用的图片裁剪，基于canvasAPI进�
 - **引入组件库**
 
   ```typescript
-  import {
-    TaroCropper
-  } from 'taro-cropper';
+  import { TaroCropper } from 'taro-cropper';
   ```
 
 - 在项目配置文件 `config/index.js` 中添加如下配置

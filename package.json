@@ -1,6 +1,6 @@
 {
-	"name": "taro-cropper",
-	"version": "2.0.0",
+	"name": "taro3-cropper",
+	"version": "1.0.0",
 	"private": false,
 	"description": "Taro框架下的图片裁剪组件封装，开箱即用",
 	"browser": "dist/index.umd.js",
@@ -33,9 +33,10 @@
 		"dev:rn": "npm run build:rn -- --watch",
 		"dev:qq": "npm run build:qq -- --watch",
 		"dev:quickapp": "npm run build:quickapp -- --watch",
-		"build": "npm run build:rollup && npm run build:lib",
+		"build": "npm run clean && npm run build:rollup && npm run build:lib",
 		"build:lib": "tsc --project ./tsconfig.build.json --declaration --declarationDir types",
-		"build:rollup": "rollup --config ./rollup.config.js"
+		"build:rollup": "rollup --config ./rollup.config.js",
+    "clean": "rimraf .temp dist lib coverage"
 	},
 	"author": "SunnyQjm",
 	"license": "MIT",

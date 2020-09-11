@@ -24,18 +24,21 @@ export default {
     {
       file: resolveFile(Package.main),
       format: 'cjs',
-      sourcemap: true
+      sourcemap: true,
+      exports: 'default'
     },
     {
       file: resolveFile(Package.module),
       format: 'es',
-      sourcemap: true
+      sourcemap: true,
+      exports: 'default'
     },
     {
       file: resolveFile(Package.browser),
       format: 'umd',
       name: 'taro-ui',
       sourcemap: true,
+      exports: 'default',
       globals: {
         react: 'React',
         '@tarojs/components': 'components',

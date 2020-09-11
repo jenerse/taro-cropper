@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var React = require('react');
 var Taro = require('@tarojs/taro');
 var components = require('@tarojs/components');
@@ -569,5 +567,5 @@ var TaroCropperComponent = /** @class */ (function (_super) {
     return TaroCropperComponent;
 }(React.PureComponent));
 
-exports.TaroCropper = TaroCropperComponent;
+module.exports = TaroCropperComponent;
 //# sourceMappingURL=index.js.map

@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('@tarojs/taro'), require('@tarojs/components')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'react', '@tarojs/taro', '@tarojs/components'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['taro-ui'] = {}, global.React, global.Taro, global.components));
-}(this, (function (exports, React, Taro, components) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react'), require('@tarojs/taro'), require('@tarojs/components')) :
+    typeof define === 'function' && define.amd ? define(['react', '@tarojs/taro', '@tarojs/components'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global['taro-ui'] = factory(global.React, global.Taro, global.components));
+}(this, (function (React, Taro, components) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -567,9 +567,7 @@
         return TaroCropperComponent;
     }(React.PureComponent));
 
-    exports.TaroCropper = TaroCropperComponent;
-
-    Object.defineProperty(exports, '__esModule', { value: true });
+    return TaroCropperComponent;
 
 })));
 //# sourceMappingURL=index.umd.js.map

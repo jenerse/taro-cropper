@@ -560,5 +560,5 @@ var TaroCropperComponent = /** @class */ (function (_super) {
     return TaroCropperComponent;
 }(PureComponent));
 
-export { TaroCropperComponent as TaroCropper };
+export default TaroCropperComponent;
 //# sourceMappingURL=index.esm.js.map
